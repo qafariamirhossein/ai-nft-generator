@@ -1,36 +1,89 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎨 AI NFT Generator
 
-## Getting Started
+Generate unique AI art and mint it as NFTs on the Ethereum blockchain.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- 🎨 AI Art Generation using DALL-E
+- 🖼️ NFT Minting on Sepolia
+- 🌐 IPFS Storage for NFT metadata
+- 👛 Web3 Wallet Integration
+- 🗃️ NFT Gallery View
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Prerequisites
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Before you begin, you'll need:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Node.js 18+ installed
+2. A crypto wallet (like MetaMask) with some Sepolia ETH
+3. The following API keys:
+   - WalletConnect Project ID
+   - OpenAI API Key
+   - NFT.Storage API Key
+   - Alchemy API Key
+   - Etherscan API Key
 
-## Learn More
+## Setup Instructions
 
-To learn more about Next.js, take a look at the following resources:
+1. **Clone and Install**
+   ```bash
+   git clone https://github.com/yourusername/ai-nft-generator.git
+   cd ai-nft-generator
+   npm install
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. **Configure Environment**
+   ```bash
+   # Copy the example config
+   cp config.example.env .env
+   ```
+   Then edit `.env` and add your API keys:
+   ```bash
+   # Web3 - Frontend
+   NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID=  # from cloud.walletconnect.com
+   NEXT_PUBLIC_ALCHEMY_API_KEY=            # from alchemy.com
+   NEXT_PUBLIC_NFT_CONTRACT_ADDRESS=       # after deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+   # Web3 - Contract Deployment
+   PRIVATE_KEY=                            # your wallet private key
+   SEPOLIA_RPC_URL=                       # from alchemy.com
+   ETHERSCAN_API_KEY=                     # from etherscan.io
 
-## Deploy on Vercel
+   # AI & Storage
+   OPENAI_API_KEY=                        # from platform.openai.com
+   NEXT_PUBLIC_NFT_STORAGE_KEY=           # from nft.storage
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3. **Deploy Smart Contract**
+   ```bash
+   # Deploy to Sepolia
+   NODE_OPTIONS="--loader ts-node/esm" npx hardhat run scripts/deploy.ts --network sepolia --tsconfig tsconfig.hardhat.json
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+   # Verify on Etherscan (optional)
+   NODE_OPTIONS="--loader ts-node/esm" npx hardhat run scripts/verify.ts --network sepolia --tsconfig tsconfig.hardhat.json
+   ```
+   Copy the deployed contract address to `NEXT_PUBLIC_NFT_CONTRACT_ADDRESS` in your `.env`
+
+4. **Start the App**
+   ```bash
+   npm run dev
+   ```
+   Open [http://localhost:3000](http://localhost:3000)
+
+## Using the App
+
+1. **Connect Wallet**
+   - Click the "Connect Wallet" button
+   - Select your wallet (MetaMask, etc.)
+   - Make sure you're on Sepolia testnet
+
+2. **Generate AI Art**
+   - Enter a descriptive prompt
+   - Click "Generate" to create AI art
+   - Preview the generated image
+
+Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
+
+## License
+
+[MIT](LICENSE)

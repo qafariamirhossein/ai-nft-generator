@@ -1,0 +1,38 @@
+{
+  "abi": [
+    {
+      "inputs": [],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "tokenURI",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "prompt",
+          "type": "string"
+        }
+      ],
+      "name": "mintNFT",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ]
+}

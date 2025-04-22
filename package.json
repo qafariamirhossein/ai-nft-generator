@@ -9,19 +9,34 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@pinata/sdk": "^2.1.0",
+    "@rainbow-me/rainbowkit": "^2.2.4",
+    "@tanstack/react-query": "^5.74.4",
+    "alchemy-sdk": "^3.5.6",
+    "ethers": "^6.13.5",
+    "next": "15.3.1",
+    "nft.storage": "^7.2.0",
+    "openai": "^4.95.1",
+    "pino-pretty": "^13.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "next": "15.3.1"
+    "viem": "^2.27.3",
+    "wagmi": "^2.14.16"
   },
   "devDependencies": {
-    "typescript": "^5",
-    "@types/node": "^20",
+    "@eslint/eslintrc": "^3",
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "@openzeppelin/contracts": "^5.3.0",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20.17.30",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4",
+    "dotenv": "^16.5.0",
     "eslint": "^9",
     "eslint-config-next": "15.3.1",
-    "@eslint/eslintrc": "^3"
+    "hardhat": "^2.23.0",
+    "tailwindcss": "^4",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
   }
 }
