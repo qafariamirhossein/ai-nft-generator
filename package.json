@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "deploy:contract": "NODE_OPTIONS=\"--loader ts-node/esm\" npx hardhat run scripts/deploy.ts --network sepolia --tsconfig tsconfig.hardhat.json",
+    "verify:contract": "NODE_OPTIONS=\"--loader ts-node/esm\" npx hardhat run scripts/verify.ts --network sepolia --tsconfig tsconfig.hardhat.json",
+    "compile:contract": "npx hardhat compile",
+    "test:contract": "npx hardhat test"
   },
   "dependencies": {
     "@pinata/sdk": "^2.1.0",

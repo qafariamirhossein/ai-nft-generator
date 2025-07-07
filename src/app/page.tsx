@@ -10,6 +10,8 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import NFTGenerator from './components/NFTGenerator';
 import WalletConnect from './components/WalletConnect';
 import Gallery from './components/Gallery';
+import Header from './components/Header';
+import Features from './components/Features';
 
 const queryClient = new QueryClient();
 
@@ -26,25 +28,43 @@ export default function Home() {
   return (
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>
-        <RainbowKitProvider config={config}>
-        <main className="min-h-screen p-8 max-w-7xl mx-auto">
-          <h1 className="text-4xl font-bold text-center mb-8">
-            AI NFT Generator
-          </h1>
-          <WalletConnect />
-          
-          <div className="space-y-12">
-            <section>
-              <h2 className="text-2xl font-semibold mb-4">Generate & Mint</h2>
-              <NFTGenerator />
-            </section>
+        <RainbowKitProvider>
+          <div className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-100 dark:from-gray-900 dark:via-purple-900 dark:to-indigo-900">
+            <Header />
             
-            <section>
-              <h2 className="text-2xl font-semibold mb-4">Your NFT Gallery</h2>
-              <Gallery />
-            </section>
+            <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+              {/* Hero Section */}
+              <div className="text-center mb-12">
+                <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent mb-4">
+                  AI NFT Generator
+                </h1>
+                <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto">
+                  Create unique AI-generated artwork and mint it as NFTs on the Ethereum blockchain
+                </p>
+                <WalletConnect />
+              </div>
+
+              {/* Features Section */}
+              <Features />
+
+              {/* Main Content */}
+              <div className="space-y-16 mt-16">
+                <section className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-white/20">
+                  <h2 className="text-3xl font-bold text-center mb-8 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+                    Generate & Mint Your NFT
+                  </h2>
+                  <NFTGenerator />
+                </section>
+                
+                <section className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-white/20">
+                  <h2 className="text-3xl font-bold text-center mb-8 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+                    Your NFT Gallery
+                  </h2>
+                  <Gallery />
+                </section>
+              </div>
+            </main>
           </div>
-        </main>
         </RainbowKitProvider>
       </QueryClientProvider>
     </WagmiProvider>
