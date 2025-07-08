@@ -12,6 +12,7 @@ import WalletConnect from './components/WalletConnect';
 import Gallery from './components/Gallery';
 import Header from './components/Header';
 import Features from './components/Features';
+import Footer from './components/Footer';
 
 const queryClient = new QueryClient();
 
@@ -49,7 +50,7 @@ export default function Home() {
 
               {/* Main Content */}
               <div className="space-y-16 mt-16">
-                <section className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-white/20">
+                <section id="generate" className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-white/20">
                   <h2 className="text-3xl font-bold text-center mb-8 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
                     Generate & Mint Your NFT
                   </h2>
@@ -62,6 +63,16 @@ export default function Home() {
                   </h2>
                   <Gallery />
                 </section>
+                
+                {/* <section id="about" className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-white/20 mt-16">
+                  <h2 className="text-3xl font-bold text-center mb-8 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+                    About
+                  </h2>
+                  <p className="text-lg text-gray-700 dark:text-gray-300 text-center max-w-2xl mx-auto">
+                    This project was created by AmirHossein Qafari. AI NFT Generator lets you create unique AI-generated artwork and mint it as NFTs on the Ethereum blockchain. Built with ❤️ using Next.js, RainbowKit, and modern Web3 tools.
+                  </p>
+                </section> */}
+                <Footer />
               </div>
             </main>
           </div>
