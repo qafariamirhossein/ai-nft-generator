@@ -13,37 +13,35 @@ export const useNFTGallery = (address: string | undefined) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  const fetchNFTs = async () => {
+    if (!address) {
+      setError('Please connect your wallet');
+      return;
+    }
+    if (!process.env.NEXT_PUBLIC_NFT_CONTRACT_ADDRESS) {
+      setError('Contract address not configured');
+      return;
+    }
+    try {
+      setIsLoading(true);
+      setError(null);
+      const response = await alchemy.nft.getNftsForOwner(address, {
+        contractAddresses: [process.env.NEXT_PUBLIC_NFT_CONTRACT_ADDRESS]
+      });
+      setNfts(response.ownedNfts);
+    } catch (error) {
+      console.error('Error fetching NFTs:', error);
+      setError('Failed to fetch NFTs. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // Fetch on mount and when address changes
   useEffect(() => {
-    const fetchNFTs = async () => {
-      if (!address) {
-        setError('Please connect your wallet');
-        return;
-      }
-
-      if (!process.env.NEXT_PUBLIC_NFT_CONTRACT_ADDRESS) {
-        setError('Contract address not configured');
-        return;
-      }
-      
-      try {
-        setIsLoading(true);
-        setError(null);
-
-        const response = await alchemy.nft.getNftsForOwner(address, {
-          contractAddresses: [process.env.NEXT_PUBLIC_NFT_CONTRACT_ADDRESS]
-        });
-        
-        setNfts(response.ownedNfts);
-      } catch (error) {
-        console.error('Error fetching NFTs:', error);
-        setError('Failed to fetch NFTs. Please try again.');
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
     fetchNFTs();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [address]);
 
-  return { nfts, isLoading, error };
+  return { nfts, isLoading, error, refetch: fetchNFTs };
 };

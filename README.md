@@ -30,7 +30,7 @@ A modern, user-friendly platform for generating AI artwork and minting it as NFT
 
 1. **WalletConnect Project ID** - [Get from WalletConnect Cloud](https://cloud.walletconnect.com/)
 2. **OpenAI API Key** - [Get from OpenAI Platform](https://platform.openai.com/)
-3. **NFT.Storage API Key** - [Get from NFT.Storage](https://nft.storage/)
+3. **Pinata API Key/Secret/JWT** - [Get from Pinata](https://pinata.cloud/)
 4. **Alchemy API Key** - [Get from Alchemy](https://alchemy.com/)
 5. **Etherscan API Key** - [Get from Etherscan](https://etherscan.io/)
 
@@ -66,7 +66,7 @@ A modern, user-friendly platform for generating AI artwork and minting it as NFT
 
    # AI & Storage
    OPENAI_API_KEY=your_openai_api_key
-   NEXT_PUBLIC_NFT_STORAGE_KEY=your_nft_storage_key
+   NEXT_PUBLIC_PINATA_JWT=your_pinata_jwt
    ```
 
 4. **Deploy smart contract**
@@ -201,7 +201,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 🙏 Acknowledgments
 
 - [OpenAI](https://openai.com/) for DALL-E 3
-- [NFT.Storage](https://nft.storage/) for IPFS storage
+- [Pinata](https://pinata.cloud/) for IPFS storage
 - [Alchemy](https://alchemy.com/) for blockchain APIs
 - [RainbowKit](https://rainbowkit.com/) for wallet integration
 - [Tailwind CSS](https://tailwindcss.com/) for styling

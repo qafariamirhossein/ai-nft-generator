@@ -6,7 +6,7 @@ import { OwnedNft } from 'alchemy-sdk';
 
 const Gallery = () => {
   const { address } = useAccount();
-  const { nfts, isLoading, error } = useNFTGallery(address || '');
+  const { nfts, isLoading, error, refetch } = useNFTGallery(address || '');
   const [selectedNFT, setSelectedNFT] = useState<OwnedNft | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -104,6 +104,12 @@ const Gallery = () => {
             />
           </div>
         </div>
+        <button
+          onClick={refetch}
+          className="ml-0 sm:ml-4 mt-4 sm:mt-0 px-4 py-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold rounded-xl hover:from-purple-700 hover:to-blue-700 transition-all duration-200"
+        >
+          Refresh
+        </button>
         <div className="text-sm text-gray-600 dark:text-gray-400">
           {filteredNFTs.length} of {nfts.length} NFTs
         </div>
@@ -129,7 +135,7 @@ const Gallery = () => {
                   target.src = '/placeholder-nft.png';
                 }}
               />
-              <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
+              <div className="absolute inset-0 bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
                 <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <button className="bg-white/90 text-gray-900 px-4 py-2 rounded-lg font-medium hover:bg-white transition-colors">
                     View Details
@@ -158,8 +164,8 @@ const Gallery = () => {
       {/* NFT Detail Modal */}
       {selectedNFT && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white dark:bg-gray-800 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="p-6">
+          <div className="bg-white dark:bg-gray-800 rounded-2xl w-full max-w-lg max-h-[90vh] flex flex-col overflow-hidden shadow-2xl">
+            <div className="p-6 overflow-y-auto flex-1">
               <div className="flex justify-between items-start mb-4">
                 <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
                   {selectedNFT.name || `NFT #${selectedNFT.tokenId}`}
@@ -173,14 +179,14 @@ const Gallery = () => {
                   </svg>
                 </button>
               </div>
-              
-              <div className="relative aspect-square mb-6 rounded-xl overflow-hidden">
+              <div className="relative w-full aspect-square mb-6 rounded-xl overflow-hidden flex items-center justify-center bg-gray-100 dark:bg-gray-900">
                 <Image
                   src={selectedNFT.image?.cachedUrl || selectedNFT.image?.originalUrl || '/placeholder-nft.png'}
                   alt={selectedNFT.name || `NFT #${selectedNFT.tokenId}`}
-                  fill
+                  width={320}
+                  height={320}
                   unoptimized
-                  className="object-cover"
+                  className="object-contain max-h-80 w-auto h-auto mx-auto"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
                     target.src = '/placeholder-nft.png';

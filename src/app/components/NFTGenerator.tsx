@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { NFTStorage } from 'nft.storage';
+// Removed: import { NFTStorage } from 'nft.storage';
 import { useAccount } from 'wagmi';
 import { useNFTMint } from '../hooks/useNFTMint';
 import Image from 'next/image';
@@ -135,7 +135,6 @@ const NFTGenerator = () => {
       setIsUploading(true);
       setError('');
       setSuccess('');
-      const nftStorage = new NFTStorage({ token: process.env.NEXT_PUBLIC_NFT_STORAGE_KEY! });
       let imageBlob: Blob;
       let name = prompt ? `AI Generated NFT - ${prompt}` : 'User Uploaded NFT';
       let description = prompt
@@ -148,17 +147,44 @@ const NFTGenerator = () => {
         if (!imageRes.ok) throw new Error('Failed to fetch image from proxy');
         imageBlob = await imageRes.blob();
       }
-      const metadata = await nftStorage.store({
+      // Upload image to Pinata
+      const imageFile = new File([imageBlob], 'nft-image.png', { type: imageBlob.type || 'image/png' });
+      const imageFormData = new FormData();
+      imageFormData.append('file', imageFile);
+      const imageResPinata = await fetch('https://api.pinata.cloud/pinning/pinFileToIPFS', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_PINATA_JWT}`,
+        },
+        body: imageFormData,
+      });
+      if (!imageResPinata.ok) throw new Error('Failed to upload image to Pinata');
+      const imagePinataData = await imageResPinata.json();
+      const imageIpfsUrl = `https://gateway.pinata.cloud/ipfs/${imagePinataData.IpfsHash}`;
+      // Prepare metadata
+      const metadata = {
         name,
         description,
-        image: imageBlob,
+        image: imageIpfsUrl,
         attributes: [
           { trait_type: 'Prompt', value: prompt || 'User Upload' },
           { trait_type: 'Generator', value: imageUrl ? 'DALL-E 3' : 'User Upload' },
           { trait_type: 'Created', value: new Date().toISOString() }
         ],
+      };
+      // Upload metadata to Pinata
+      const metadataRes = await fetch('https://api.pinata.cloud/pinning/pinJSONToIPFS', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_PINATA_JWT}`,
+        },
+        body: JSON.stringify(metadata),
       });
-      await mintNFT(address, metadata.url, prompt || 'User Upload');
+      if (!metadataRes.ok) throw new Error('Failed to upload metadata to Pinata');
+      const metadataPinataData = await metadataRes.json();
+      const metadataIpfsUrl = `https://gateway.pinata.cloud/ipfs/${metadataPinataData.IpfsHash}`;
+      await mintNFT(address, metadataIpfsUrl, prompt || 'User Upload');
       setSuccess('NFT minted successfully! Check your wallet.');
       setImageUrl('');
       setPrompt('');

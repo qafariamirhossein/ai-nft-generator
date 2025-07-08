@@ -56,7 +56,7 @@ export default function Home() {
                   <NFTGenerator />
                 </section>
                 
-                <section className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-white/20">
+                <section id="gallery" className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-white/20">
                   <h2 className="text-3xl font-bold text-center mb-8 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
                     Your NFT Gallery
                   </h2>
