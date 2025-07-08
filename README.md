@@ -18,6 +18,18 @@ A modern, user-friendly platform for generating AI artwork and minting it as NFT
 - 📱 **Responsive Design** - Works perfectly on all devices
 - ⚡ **Modern UI/UX** - Smooth animations and intuitive interface
 
+## 🖼️ Screenshots
+
+### Dark Mode
+![Home Dark 1](public/screenshots/home-dark-1.png)
+![Home Dark 2](public/screenshots/home-dark-2.png)
+![Home Dark 3](public/screenshots/home-dark-3.png)
+
+### Light Mode
+![Home Light 1](public/screenshots/home-light-1.png)
+![Home Light 2](public/screenshots/home-light-2.png)
+![Home Light 3](public/screenshots/home-light-3.png)
+
 ## 🚀 Quick Start
 
 ### Prerequisites
