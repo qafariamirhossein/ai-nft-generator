@@ -217,14 +217,15 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [Alchemy](https://alchemy.com/) for blockchain APIs
 - [RainbowKit](https://rainbowkit.com/) for wallet integration
 - [Tailwind CSS](https://tailwindcss.com/) for styling
+- Made with ❤️ by AmirHossein Qafari ([GitHub](https://github.com/qafariamirhossein), [LinkedIn](https://www.linkedin.com/in/amirhossein-qafari/), [Telegram](https://t.me/amirDev82), 📞 +98 930 064 6780, 🌍 Iran - Tehran)
 
 ## 📞 Support
 
 - 📧 Email: support@ai-nft-generator.com
-- 💬 Discord: [Join our server](https://discord.gg/your-server)
-- 🐛 Issues: [Report a bug](../../issues/new)
-- 💡 Ideas: [Request a feature](../../issues/new)
+- 💬 Telegram: [amirDev82](https://t.me/amirDev82)
+- 🐙 GitHub: [qafariamirhossein](https://github.com/qafariamirhossein)
+- 💼 LinkedIn: [amirhossein-qafari](https://www.linkedin.com/in/amirhossein-qafari/)
+- 📞 Phone: +98 930 064 6780
+- 🌍 Location: Iran - Tehran
 
 ---
-
-Made with ❤️ by the AI NFT Generator team
